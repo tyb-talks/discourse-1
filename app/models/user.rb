@@ -1214,6 +1214,7 @@ class User < ActiveRecord::Base
     posts
       .includes(:post_actions)
       .where("post_actions.post_action_type_id" => PostActionType.flag_types_without_custom.values)
+      .where("post_actions.agreed_at IS NOT NULL")
       .count
   end
 
